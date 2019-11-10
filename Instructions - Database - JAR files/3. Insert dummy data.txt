@@ -1,0 +1,49 @@
+USE `school`;
+
+INSERT INTO `school`.`roles` (`roleName`) VALUES ('headMaster');
+INSERT INTO `school`.`roles` (`roleName`) VALUES ('trainer');
+INSERT INTO `school`.`roles` (`roleName`) VALUES ('student');
+
+INSERT INTO `school`.`users` (`roleID`, `username`, `password`, `FirstName`, `LastName`) VALUES ('1', 'hm', '$2a$10$kGF7nVr1PFzmsL7VG8T6ousEtwLxIZWM2NKEy9KhwvtHKhGvsD5AK', 'Petros', 'Papaioannou');
+
+INSERT INTO `school`.`users` (`roleID`, `username`, `password`, `FirstName`, `LastName`) VALUES ('2', 'trainer1', '$2a$10$kGF7nVr1PFzmsL7VG8T6ousEtwLxIZWM2NKEy9KhwvtHKhGvsD5AK', 'Konstantinos', 'Nikolaou');
+INSERT INTO `school`.`users` (`roleID`, `username`, `password`, `FirstName`, `LastName`) VALUES ('2', 'trainer2', '$2a$10$kGF7nVr1PFzmsL7VG8T6ousEtwLxIZWM2NKEy9KhwvtHKhGvsD5AK', 'Nikolaos', 'Vardis');
+
+INSERT INTO `school`.`users` (`roleID`, `username`, `password`, `FirstName`, `LastName`) VALUES ('3', 'student1', '$2a$10$cIm9eKHfmQO0zNGndcriDOqmqNSMh2oK/MzJGXqNV.hiuL2hcXtCG', 'Andreas', 'Papanikolaou');
+INSERT INTO `school`.`users` (`roleID`, `username`, `password`, `FirstName`, `LastName`) VALUES ('3', 'student2', '$2a$10$cIm9eKHfmQO0zNGndcriDOqmqNSMh2oK/MzJGXqNV.hiuL2hcXtCG', 'Vasileios', 'Dimakos');
+
+INSERT INTO `school`.`courses` (`Title`, `Stream`, `Type`, `StartDate`, `EndDate`) VALUES ('Python', 'Java', 'Part', '2019-05-29', '2019-05-31');
+INSERT INTO `school`.`courses` (`Title`, `Stream`, `Type`, `StartDate`, `EndDate`) VALUES ('Java', 'Java', 'Part', '2019-06-03', '2019-06-06');
+INSERT INTO `school`.`courses` (`Title`, `Stream`, `Type`, `StartDate`, `EndDate`) VALUES ('MySQL', 'Java', 'Part', '2019-06-07', '2019-06-08');
+
+INSERT INTO `school`.`assignments` (`Title`, `Description`, `SubmissionDateAndTime`) VALUES ('Assignment1', 'School1', '2019-06-15 12:00:00');
+INSERT INTO `school`.`assignments` (`Title`, `Description`, `SubmissionDateAndTime`) VALUES ('Assignment2', 'School2', '2019-07-15 12:00:00');
+
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('2', '1');
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('3', '2');
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('3', '3');
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('4', '1');
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('4', '2');
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('5', '1');
+INSERT INTO `school`.`users_courses` (`UserID`, `CourseID`) VALUES ('5', '2');
+
+
+INSERT INTO `school`.`courses_assignments` (`CourseID`, `AssignmentID`) VALUES ('1', '1');
+INSERT INTO `school`.`courses_assignments` (`CourseID`, `AssignmentID`) VALUES ('2', '1');
+INSERT INTO `school`.`courses_assignments` (`CourseID`, `AssignmentID`) VALUES ('2', '2');
+
+INSERT INTO `school`.`students_courses_assignments` (`StudentID`, `CourseID`, `AssignmentID`) VALUES ('4', '1', '1');
+INSERT INTO `school`.`students_courses_assignments` (`StudentID`, `CourseID`, `AssignmentID`) VALUES ('4', '2', '1');
+INSERT INTO `school`.`students_courses_assignments` (`StudentID`, `CourseID`, `AssignmentID`) VALUES ('4', '2', '2');
+INSERT INTO `school`.`students_courses_assignments` (`StudentID`, `CourseID`, `AssignmentID`) VALUES ('5', '1', '1');
+INSERT INTO `school`.`students_courses_assignments` (`StudentID`, `CourseID`, `AssignmentID`) VALUES ('5', '2', '1');
+
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-05-29', '1', '2');
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-05-30', '1', '2');
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-05-31', '1', '2');
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-06-03', '2', '3');
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-06-04', '2', '3');
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-06-05', '2', '3');
+INSERT INTO `school`.`schedule` (`Date`, `CourseID`, `TrainerID`) VALUES ('2019-06-06', '2', '3');
+
+

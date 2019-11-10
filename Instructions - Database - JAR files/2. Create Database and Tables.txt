@@ -1,0 +1,112 @@
+
+--  Create database School
+
+CREATE DATABASE School;
+
+USE School;
+
+-- 1 Create table Roles
+
+CREATE TABLE `roles` (
+  `ID` int(100) NOT NULL AUTO_INCREMENT,
+  `roleName` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID`));
+
+-- 2 Create table Users
+
+CREATE TABLE `users` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `roleID` int(11) DEFAULT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` char(250) NOT NULL,
+  `FirstName` varchar(30) NOT NULL,
+  `LastName` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  KEY `fk_roleID` (`roleID`),
+  CONSTRAINT `fk_roleID` FOREIGN KEY (`roleID`) REFERENCES `roles` (`ID`));
+
+-- 3 Create table Courses
+
+CREATE TABLE `courses` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(30) NOT NULL,
+  `Stream` varchar(30) NOT NULL,
+  `Type` varchar(30) NOT NULL,
+  `StartDate` date DEFAULT NULL,
+  `EndDate` date DEFAULT NULL,
+  PRIMARY KEY (`ID`));
+
+-- 4 Create table Assignments
+
+CREATE TABLE `assignments` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(30) NOT NULL,
+  `Description` varchar(30) NOT NULL,
+  `SubmissionDateAndTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`ID`));
+
+
+
+-- 5 Create table users_courses
+
+CREATE TABLE `users_courses` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserID` int(11) NOT NULL,
+  `CourseID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `unique_index` (`UserID`,`CourseID`),
+  KEY `uuuuid_idx` (`UserID`),
+  KEY `ccccid_idx` (`CourseID`),
+  CONSTRAINT `ccccid` FOREIGN KEY (`CourseID`) REFERENCES `courses` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `uuuuid` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+-- 6 Create table Courses _ Assignments
+
+CREATE TABLE `courses_assignments` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CourseID` int(11) NOT NULL,
+  `AssignmentID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `unique_index` (`CourseID`,`AssignmentID`),
+  KEY `ccid_idx` (`CourseID`),
+  KEY `aaid_idx` (`AssignmentID`),
+  CONSTRAINT `aaid` FOREIGN KEY (`AssignmentID`) REFERENCES `assignments` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ccid` FOREIGN KEY (`CourseID`) REFERENCES `courses` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE); 
+
+-- 7 Create table Students_Courses_Assignments 
+
+CREATE TABLE `students_courses_assignments` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentID` int(11) NOT NULL,
+  `CourseID` int(11) NOT NULL,
+  `AssignmentID` int(11) NOT NULL,
+  `Submit` tinyint(1) DEFAULT NULL,
+  `OralMark` decimal(10,0) DEFAULT NULL,
+  `TotalMark` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `unique_index` (`StudentID`,`CourseID`,`AssignmentID`),
+  KEY `ccccc_idx` (`CourseID`),
+  KEY `aaaaa_idx` (`AssignmentID`),
+  KEY `userstudent_idx` (`StudentID`),
+  CONSTRAINT `assignnn` FOREIGN KEY (`AssignmentID`) REFERENCES `assignments` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `courccc` FOREIGN KEY (`CourseID`) REFERENCES `courses` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `userstudent` FOREIGN KEY (`StudentID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+-- 8 Create table Schedule
+
+CREATE TABLE `schedule` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Date` date DEFAULT NULL,
+  `CourseID` int(11) DEFAULT NULL,
+  `TrainerID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `coiddd_idx` (`CourseID`),
+  KEY `trridd_idx` (`TrainerID`),
+  CONSTRAINT `coiddd` FOREIGN KEY (`CourseID`) REFERENCES `courses` (`ID`),
+  CONSTRAINT `trridd` FOREIGN KEY (`TrainerID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+

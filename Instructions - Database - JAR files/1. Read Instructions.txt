@@ -1,0 +1,21 @@
+Database
+Username = root
+Password = 12345
+
+
+
+Every User has Password: 1234
+
+Username: hm       (Head Master)
+
+Username: trainer1 (Trainer)
+Username: trainer2 (Trainer)
+
+Username: student1 (Student)
+Username: student2 (Student)
+
+
+
+
+Import JAR files
+	 	
